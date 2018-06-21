@@ -7,7 +7,7 @@ export default function(state=INITIAL_STATE, action) {
     case LOADING_EVENTS:
       return Object.assign({}, state, {loading: true})
     case GET_EVENTS:
-      return {loading: false, events: action.payload}
+      return {loading: false, events: action.payload.data}
     default:
         return state
   }

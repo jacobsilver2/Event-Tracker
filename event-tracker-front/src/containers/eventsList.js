@@ -1,9 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { getEvents } from '../actions/index'
 
-const EventsList = () => (
-  <h1>Rendering the events list</h1>
-)
+class EventsList extends React.Component {
 
-export default EventsList;
+  componentDidMount() {
+      this.props.getEvents()
+  }
+
+  render() {
+    return(
+      <h1>Rendering the events list</h1>
+    )
+  }
+}
+
+
+
+export default connect(null, { getEvents})(EventsList);

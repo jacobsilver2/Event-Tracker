@@ -3,7 +3,7 @@ import { GET_EVENTS, LOADING_EVENTS } from './types'
 
 const api_URL = 'http://localhost:5000/api/v1'
 
-export function fetchCats() {
+export function getEvents() {
   return function(dispatch) {  
     dispatch({type: LOADING_EVENTS})
     return fetch(`${api_URL}/events`)
