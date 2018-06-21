@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { getEvents } from '../actions/index'
+
 
 class EventsList extends React.Component {
 
@@ -11,7 +12,10 @@ class EventsList extends React.Component {
 
   render() {
     return(
-      <h1>Rendering the events list</h1>
+      <div>
+        <h1>Rendering the events list</h1>
+        <Link to="/events/new" className="btn btn-warning">Create A New Event </Link>
+      </div>
     )
   }
 }
