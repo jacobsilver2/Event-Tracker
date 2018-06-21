@@ -1,0 +1,24 @@
+import React, { Component } from 'react';
+import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
+import EventsList from '../containers/eventsList'
+
+
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
+          <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
+          <NavLink style={{ marginRight: '10px' }} to="/events">See All The Events</NavLink>
+        </div>
+          <Route path="/events" component={EventsList} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;
