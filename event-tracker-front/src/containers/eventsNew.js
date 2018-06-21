@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {reduxForm} from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { createEvent } from '../actions/index'
 
 class NewEvent extends React.Component {
@@ -9,8 +9,10 @@ class NewEvent extends React.Component {
   }
 
   onSubmit(props){
-    debugger
     this.props.createEvent(props)
+    .then(()=> {
+      this.context.router.push('/');
+    })
   }
 
   render() {

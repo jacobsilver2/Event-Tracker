@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
 import { GET_EVENTS, CREATE_EVENT, GET_EVENT, LOADING_EVENTS } from './types'
 import axios from 'axios'
 
@@ -30,7 +30,15 @@ export function createEvent(props) {
   return {
     type: CREATE_EVENT,
     payload: request
-  }
+  };
+}
+
+export function getEvent(id){
+  const request = axios.get(`${api_URL}/events/${id}`);
+  return {
+    type: GET_EVENT,
+    payload: request
+  };
 }
 
 

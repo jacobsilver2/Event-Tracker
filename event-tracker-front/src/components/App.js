@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
 import EventsList from '../containers/eventsList'
 import NewEvent from '../containers/eventsNew'
+import ShowEvent from '../components/eventShow'
 
 
 import './App.css';
@@ -18,6 +19,7 @@ class App extends Component {
         </div>
           <Route exact path="/events" component={EventsList} />
           <Route exact path="/events/new" component={NewEvent}/>
+          <Route exact path="events/:id" component={ShowEvent}/>
         </div>
       </Router>
     );
