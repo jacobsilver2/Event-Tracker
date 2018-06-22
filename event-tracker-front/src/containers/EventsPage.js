@@ -5,7 +5,7 @@ import EventsList from '../components/eventsList'
 import EventsNew from './EventsNew'
 import { getEvents } from '../actions/index'
 
-class EventsPage extends React {
+class EventsPage extends Component {
 
     render() {
       const { events, match } = this.props;

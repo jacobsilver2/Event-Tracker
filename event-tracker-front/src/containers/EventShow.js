@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteEvent} from '../actions'
+// import { Button, ButtonGroup, Image } from 'react-bootstrap';
 // import {getEvent} from '../actions/index'
 
-class default Event extends React.Component {
+class EventShow extends Component {
 
     // componentDidMount() {
     //     this.props.getEvent(this.props.match.params.id)
     // }
 
     render() {
-
-        if(!this.props.event) {
-            return <div>Getting event. please wait</div>
-        }
-
+        const { event, match, history } = this.props;
         return (
-            <div className="container">
-                <h3>Title: {this.props.event.title}</h3>
-                <h2>Is this working?</h2>
+            <div className="container-fluid text-center">
+                <h1>{event.title}</h1>
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {event: state.events.event}
-}
+const mapStateToProps = (state, ownProps) => {
+    const id = +ownProps.match.params.eventId
+    const event = state.events.events.find(event => event.id === id) || {}
+    return {
+        event: event}
+    }
 
-// export default connect(mapStateToProps, {getEvent} )(Event);
+export default connect(mapStateToProps, null)(EventShow);
