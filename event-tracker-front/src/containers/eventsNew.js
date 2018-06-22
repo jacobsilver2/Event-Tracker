@@ -9,6 +9,7 @@ class NewEvent extends React.Component {
   }
 
   onSubmit(props){
+    debugger
     this.props.createEvent(props)
     .then(()=> {
       this.context.router.push('/');

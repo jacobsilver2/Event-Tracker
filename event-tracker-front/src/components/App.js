@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
-import EventsList from '../containers/eventsList'
-import NewEvent from '../containers/eventsNew'
-import ShowEvent from '../components/eventShow'
-
-
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from './home';
+import EventsPage from '../containers/EventsPage';
+import { getEvents } from '../actions/index';
+import Home from '../components/home';
+import { connect } from 'react-redux';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.getEvents()
+  }
+
   render() {
     return (
       <Router>
-        <div className="App">
-        <div style={{ borderBottom: '2px solid black', paddingBottom: '10px', marginBottom: '12px' }}>
-          <NavLink style={{ marginRight: '10px' }} to="/">Home</NavLink>
-          <NavLink style={{ marginRight: '10px' }} to="/events">See All The Events</NavLink>
-          <NavLink style={{ marginRight: '10px' }} to="/events/new">Create A New Event</NavLink>
-        </div>
-          <Route exact path="/events" component={EventsList} />
-          <Route exact path="/events/new" component={NewEvent}/>
-          <Route exact path="events/:id" component={ShowEvent}/>
+        <div>
+          <NavBar />
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="events" component={EventsPage}/>
+          </Switch>
         </div>
       </Router>
     );
   }
 }
 
-export default App;
+export default connect(null, {getEvents})(App)
