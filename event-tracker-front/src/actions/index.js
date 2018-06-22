@@ -1,6 +1,3 @@
-// import fetch from 'isomorphic-fetch';
-import { GET_EVENTS, CREATE_EVENT, GET_EVENT, LOADING_EVENTS } from './types'
-import axios from 'axios'
 
 const api_URL = 'http://localhost:5000/api/v1'
 
@@ -35,10 +32,81 @@ export const updateEvent = event => {
 }
 
 // Events Async Actions
-export const getEvents = () {
+export const getEvents = () => {
   return dispatch => {
-    
+    return fetch(`${api_URL}/events`, {
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(events => {
+      dispatch(setEvents(events))
+    })
+    .catch(error => console.log(error));
   }
+}
+
+export const createEvent = (event, routerHistory) => {
+  return dispatch => {
+    return fetch(`${API_URL}/events`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({event: event})
+    })
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(event => {
+      dispatch(addEvent(event))
+      routerHistory.replace(`/events/${events.id}`)
+    })
+    .catch(error => {
+      dispatch({type: 'error'})
+      routerHistory.replace('/events/new');
+     })
+  }
+}
+
+export const editEvent = (event, routerHistory) => {
+  return dispatch => {
+    return fetch(`${API_URL}/events/${event.id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({event: event})
+    })
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(event => {
+      dispatch(updateTrail(event))
+      routerHistory.replace(`/events/${event.id}`)
+    })
+    .catch(error => {
+      dispatch({type: 'error'})
+      routerHistory.replace('/events');
+     })
+  }
+}
+
+export const deleteEvent = (eventId, routerHistory) => {
+  return dispatch => {
+    return fetch(`${api_URL}/events/${eventId}`, {
+      method: "DELETE",
+    })
+    .then(response => {
+      routerHistory.replace('/events');
+      dispatch(removeEvent(eventId));
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+function handleErrors(response){
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
 }
 
 
