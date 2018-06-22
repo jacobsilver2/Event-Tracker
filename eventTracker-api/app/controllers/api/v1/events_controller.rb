@@ -1,13 +1,14 @@
 module Api  
   module V1 
     class EventsController < ApplicationController
-      before_action :set_article, only: [:show, :destroy]
+      before_action :set_event, only: [:show, :destroy]
 
       def index
         render json: Event.all
       end
 
       def show
+        render json: @event = Event.find(params[:id])
       end
 
       def create

@@ -3,8 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from './home';
 import EventsPage from '../containers/EventsPage';
-import { getEvents } from '../actions/index';
 import Home from '../components/home';
+import { getEvents } from '../actions/index';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route exact path="events" component={EventsPage}/>
+            <Route exact path="/events" component={EventsPage}/>
           </Switch>
         </div>
       </Router>

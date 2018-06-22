@@ -2,8 +2,8 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
-            Welcome to Event Tracker
+        <div className="container-fluid text-center">
+            Welcome to Event Tracker Home Page
         </div>
     )
 }
