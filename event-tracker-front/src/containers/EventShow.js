@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getEvent} from '../actions/index'
+import { Link } from 'react-router-dom';
+// import {getEvent} from '../actions/index'
 
-class Event extends React.Component {
+class default Event extends React.Component {
 
-    componentDidMount() {
-        this.props.getEvent(this.props.match.params.id)
-    }
+    // componentDidMount() {
+    //     this.props.getEvent(this.props.match.params.id)
+    // }
 
     render() {
 
@@ -27,4 +28,4 @@ function mapStateToProps(state) {
     return {event: state.events.event}
 }
 
-export default connect(mapStateToProps, {getEvent} )(Event);
+// export default connect(mapStateToProps, {getEvent} )(Event);

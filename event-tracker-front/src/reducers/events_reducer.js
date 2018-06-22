@@ -1,15 +1,18 @@
-import { GET_EVENTS, LOADING_EVENTS, GET_EVENT } from '../actions/types'
-
-const INITIAL_STATE = {loading: false, events: [], event: null };
-
-export default function(state=INITIAL_STATE, action) {
+export default (state={events: [] }, action) => {
   switch(action.type) {
-    case LOADING_EVENTS:
-      return Object.assign({}, state, {loading: true})
-    case GET_EVENTS:
-      return {loading: false, events: action.payload.data}
-    case GET_EVENT:
-      return { ...state, event: action.payload.data }
+    case 'GET_EVENTS':
+      return { ...state, events: action.events}
+    case 'ADD_EVENT':
+      return {events: [...state.events, action.event]}
+    case 'REMOVE_EVENT':
+      return {events: state.events.filter(event => event.id !== action.event)};
+    case 'EDIT_EVENT':
+      state.events.map((event) => {
+        if (event.id === action.event.id) {
+          event.title = action.event.title
+        }
+      });
+    return {...state, event: action.event};
     default:
         return state
   }

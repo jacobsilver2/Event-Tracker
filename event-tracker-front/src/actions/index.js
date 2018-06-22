@@ -3,7 +3,7 @@ const api_URL = 'http://localhost:5000/api/v1'
 
 
 //Event Action Creators
-export const setEvents = events = {
+export const setEvents = events => {
   return {
     type: 'GET_EVENTS',
     events
@@ -47,7 +47,7 @@ export const getEvents = () => {
 
 export const createEvent = (event, routerHistory) => {
   return dispatch => {
-    return fetch(`${API_URL}/events`, {
+    return fetch(`${api_URL}/events`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ export const createEvent = (event, routerHistory) => {
     .then(response => response.json())
     .then(event => {
       dispatch(addEvent(event))
-      routerHistory.replace(`/events/${events.id}`)
+      routerHistory.replace(`/events/${event.id}`)
     })
     .catch(error => {
       dispatch({type: 'error'})
@@ -69,7 +69,7 @@ export const createEvent = (event, routerHistory) => {
 
 export const editEvent = (event, routerHistory) => {
   return dispatch => {
-    return fetch(`${API_URL}/events/${event.id}`, {
+    return fetch(`${api_URL}/events/${event.id}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export const editEvent = (event, routerHistory) => {
     .then(handleErrors)
     .then(response => response.json())
     .then(event => {
-      dispatch(updateTrail(event))
+      dispatch(updateEvent(event))
       routerHistory.replace(`/events/${event.id}`)
     })
     .catch(error => {

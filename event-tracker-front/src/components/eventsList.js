@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import Event from '../components/eventShow'
+import Event from '../containers/EventShow'
 
 const EventsList = ({ events }) => {
   
