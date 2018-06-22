@@ -12,11 +12,11 @@ module Api
       end
 
       def create
-        @event = Event.create(event_params)
+        @event = Event.new(event_params)
         if @event.save
           render json: @event, status: 201
         else 
-          render json: { errors: @event.errors.full_messages }, status: 422 
+          render json: { errors: @event.errors.full_messages }, status: 400
         end
       end
 
@@ -32,7 +32,7 @@ module Api
       end
 
       def event_params 
-        params.permit(:title)
+        params.require(:event).permit(:title)
       end
 
     end

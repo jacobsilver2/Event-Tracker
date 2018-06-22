@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { createEvent } from '../actions'
 import { Button } from 'react-bootstrap'
 
-class EventsNew extends React.Component {
-
+class EventsNew extends Component {
   constructor(){
     super()
+
     this.state = {
       title: ''
     }
@@ -14,14 +14,18 @@ class EventsNew extends React.Component {
   
 
   handleOnChange = e => {
+    console.log("handle on change is firing");
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
+    console.log(this.state);
   }
 
   handleOnSubmit = e => {
     e.preventDefault();
-    console.log("handle on submit was called");
+    const { createEvent, history } = this.props;
+    console.log(createEvent);
+    createEvent(this.state, history);
   }
 
   render() {
@@ -37,9 +41,12 @@ class EventsNew extends React.Component {
               placeholder="Event Title"
               value={this.state.title}
               onChange={this.handleOnChange}
-            
             />
-          </label>
+          </label><br></br>
+          <Button className="btn btn-outline-primary" type="submit">
+            <span className="glyphicon glyphicon-ok"></span>
+            Add Event
+          </Button>
         </form>
       
       

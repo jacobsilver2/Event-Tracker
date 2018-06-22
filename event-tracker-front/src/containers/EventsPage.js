@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EventsList from '../components/eventsList'
-import EventsNew from './eventsNew'
+import EventsNew from './EventsNew'
 import EventShow from './EventShow'
-import { getEvents } from '../actions/index'
+// import { getEvents } from '../actions/index'
 
 class EventsPage extends Component {
 
