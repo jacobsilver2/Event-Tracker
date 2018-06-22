@@ -13,6 +13,7 @@ class EventShow extends Component {
 
     render() {
         const { event, match, history } = this.props;
+        console.log(this.props);
         return (
             <div className="container-fluid text-center">
                 <h1>{event.title}</h1>
@@ -22,8 +23,10 @@ class EventShow extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const id = +ownProps.match.params.eventId
+    
+    const id = +ownProps.match.params.showId
     const event = state.events.events.find(event => event.id === id) || {}
+    
     return {
         event: event}
     }

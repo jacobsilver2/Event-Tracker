@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EventsList from '../components/eventsList'
-import EventsNew from './EventsNew'
+import EventsNew from './eventsNew'
+import EventShow from './EventShow'
 import { getEvents } from '../actions/index'
 
 class EventsPage extends Component {
 
     render() {
       const { events, match } = this.props;
-
+      
       return(
         <div className="container">
           <Switch>
@@ -17,6 +18,7 @@ class EventsPage extends Component {
               <EventsList events={events} />
             )}/>
           <Route path={`${match.url}/new`} component={EventsNew} />
+          <Route exact path={`${match.url}/:showId`} component={EventShow}/>
           </Switch>
         </div>
       )
@@ -27,4 +29,4 @@ class EventsPage extends Component {
     return {events: state.events}
   }
   
-  export default connect(mapStateToProps, { getEvents })(EventsPage);
+  export default connect(mapStateToProps, null)(EventsPage);

@@ -1,41 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
-import { createEvent } from '../actions/index'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createEvent } from '../actions'
+import { Button } from 'react-bootstrap'
 
-class NewEvent extends React.Component {
-  static contextTypes = {
-    router: PropTypes.object
+class EventsNew extends React.Component {
+
+  constructor(){
+    super()
+    this.state = {
+      title: ''
+    }
   }
+  
 
-  onSubmit(props){
-    debugger
-    this.props.createEvent(props)
-    .then(()=> {
-      this.context.router.push('/');
+  handleOnChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     })
   }
 
+  handleOnSubmit = e => {
+    e.preventDefault();
+    console.log("handle on submit was called");
+  }
+
   render() {
-    const {fields:{title}, handleSubmit} = this.props
     return(
-      <div className="container">
-        <h1>Create A New Event</h1>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <div className="form-group">
-            <label>Title</label>
-            <input type="text" className="form-control" {...title}/>
-          </div>
-          <button type="submit" className="btn btn-success">Create Event</button>
+      <div className="container-fluid text-center">
+        <form style={{ marginTop: '20px' }} onSubmit={this.handleOnSubmit} >
+          <label>
+            Title: <br></br>
+            <input
+              className="form-control"
+              type="text"
+              name="title"
+              placeholder="Event Title"
+              value={this.state.title}
+              onChange={this.handleOnChange}
+            
+            />
+          </label>
         </form>
+      
+      
       </div>
     )
   }
 }
 
-const EventForm = reduxForm({
-  form: 'newEventForm', 
-  fields: ['title']
-}, null, {createEvent})(NewEvent);
 
-export default EventForm;
+
+export default connect(null, {createEvent})(EventsNew);
