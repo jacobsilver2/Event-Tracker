@@ -2090,3 +2090,21 @@ Processing by Api::V1::EventsController#index as */*
 Completed 200 OK in 31ms (Views: 26.8ms | ActiveRecord: 1.1ms)
 
 
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20180623202527)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "admin" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180623202527"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "admin@bananas.com"], ["password_digest", "$2a$10$P8/DazM06rp9cHxKtqEnleF6gywQTa/WZUfhOxjBOSB/gXnrb1Pyq"], ["admin", "t"], ["created_at", "2018-06-23 20:28:54.030145"], ["updated_at", "2018-06-23 20:28:54.030145"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "user@bananas.com"], ["password_digest", "$2a$10$YfOb166cDK24ASQjhlA5suw2irjkn4Xdda4/v/YxMky5EtrquIyWS"], ["created_at", "2018-06-23 20:28:54.094330"], ["updated_at", "2018-06-23 20:28:54.094330"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
