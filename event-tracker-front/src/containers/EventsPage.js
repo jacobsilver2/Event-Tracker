@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EventsList from '../components/eventsList'
 import EventsNew from './EventsNew'
 import EventShow from './EventShow'
+import EventsEdit from './EventsEdit'
 // import { getEvents } from '../actions/index'
 
 class EventsPage extends Component {
@@ -19,6 +20,7 @@ class EventsPage extends Component {
             )}/>
           <Route path={`${match.url}/new`} component={EventsNew} />
           <Route exact path={`${match.url}/:showId`} component={EventShow}/>
+          <Route exact path={`${match.url}/:showId/edit`} component={EventsEdit}/>
           </Switch>
         </div>
       )
