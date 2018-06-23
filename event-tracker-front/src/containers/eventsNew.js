@@ -14,17 +14,17 @@ class EventsNew extends Component {
   
 
   handleOnChange = e => {
-    console.log("handle on change is firing");
+    // console.log("handle on change is firing");
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleOnSubmit = e => {
     e.preventDefault();
     const { createEvent, history } = this.props;
-    console.log(createEvent);
+    // console.log(createEvent);
     createEvent(this.state, history);
   }
 

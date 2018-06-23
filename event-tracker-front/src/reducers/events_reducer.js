@@ -1,11 +1,12 @@
 export default (state={events: [] }, action) => {
   switch(action.type) {
     case 'GET_EVENTS':
-      return { ...state, events: action.events}
+      return { ...state, events: action.events};
     case 'ADD_EVENT':
-      return {events: [...state.events, action.event]}
+      return {events: [...state.events, action.event]};
     case 'REMOVE_EVENT':
-      return {events: state.events.filter(event => event.id !== action.event)};
+      console.log('dfdfd');
+      return {events: state.events.filter(event => event.id !== action.event.id)};
     case 'EDIT_EVENT':
       state.events.map((event) => {
         if (event.id === action.event.id) {

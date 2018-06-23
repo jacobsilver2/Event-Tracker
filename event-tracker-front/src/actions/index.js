@@ -1,4 +1,3 @@
-
 const api_URL = 'http://localhost:5000/api/v1'
 
 
@@ -17,7 +16,7 @@ export const addEvent = event => {
   }
 }
 
-export const removeEvent = event => {
+export const removeEvent = event => {  
   return {
     type: 'REMOVE_EVENT',
     event
@@ -92,8 +91,8 @@ export const editEvent = (event, routerHistory) => {
 
 export const deleteEvent = (eventId, routerHistory) => {
   return dispatch => {
-    return fetch(`${api_URL}/events/${eventId}`, {
-      method: "DELETE",
+    fetch(`${api_URL}/events/${eventId}`, {
+      method: 'DELETE',
     })
     .then(response => {
       routerHistory.replace('/events');
@@ -102,6 +101,16 @@ export const deleteEvent = (eventId, routerHistory) => {
     .catch(error => console.log(error))
   }
 }
+
+// export function deleteQuestion(questionId, routerHistory) {
+//   return (dispatch) => {
+//     fetch(`${API_URL}/questions/${questionId}`, {
+//       method: 'DELETE',
+//     }).then(res => {
+//       dispatch(removeQuestion(questionId))
+//     })
+//   }
+// }
 
 function handleErrors(response){
   if (!response.ok) {

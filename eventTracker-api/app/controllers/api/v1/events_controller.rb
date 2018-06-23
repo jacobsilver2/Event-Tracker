@@ -21,8 +21,11 @@ module Api
       end
 
       def destroy
-        @event.destroy
-        render :show, status: ok
+        if @event.destroy
+          render json: {message: "event deleted"}, status: 204
+        else
+          render json: {message: @event.errors}, status: 400
+        end
       end
 
       private
